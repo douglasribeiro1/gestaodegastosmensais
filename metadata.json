@@ -1,0 +1,5 @@
+{
+  "name": "Gestor de Gastos Simples",
+  "description": "Um gerenciador de gastos mensais simples para controlar despesas no débito e crédito, definindo limites mensais e acompanhando o saldo restante.",
+  "requestFramePermissions": []
+}
