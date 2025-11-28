@@ -1,12 +1,15 @@
-const CACHE_NAME = 'gastos-app-v1';
+const CACHE_NAME = 'gastos-app-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './index.tsx',
   './manifest.json',
   'https://cdn.tailwindcss.com',
-  'https://aistudiocdn.com/react@^19.2.0',
-  'https://aistudiocdn.com/react-dom@^19.2.0/',
-  'https://aistudiocdn.com/lucide-react@^0.555.0'
+  'https://unpkg.com/@babel/standalone/babel.min.js',
+  'https://esm.sh/react@18.2.0',
+  'https://esm.sh/react-dom@18.2.0/client',
+  'https://esm.sh/lucide-react@0.263.1?deps=react@18.2.0',
+  'https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4b0.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -34,8 +37,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Estratégia: Cache First, falling back to Network
-  // Isso garante que o app carregue rápido e funcione offline
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);

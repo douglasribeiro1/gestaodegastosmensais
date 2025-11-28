@@ -9,12 +9,16 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="./manifest.json" />
     
-    <!-- Ícones para iOS -->
+    <!-- Ícones -->
+    <link rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4b0.png">
     <link rel="apple-touch-icon" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4b0.png">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <title>Gestor de Gastos 💰</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -29,26 +33,28 @@
         }
       }
     </script>
-    <!-- Babel Standalone para rodar JSX/TSX diretamente no navegador (útil para GitHub Pages sem build step) -->
+    
+    <!-- Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- ImportMap corrigido: Apenas esm.sh para evitar conflito de versões (Dual React) -->
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://aistudiocdn.com/react@^19.2.0",
-        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-        "react/": "https://aistudiocdn.com/react@^19.2.0/",
-        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?deps=react@18.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
 </head>
   <body class="bg-gray-50 text-gray-900 font-sans antialiased select-none">
     <div id="root"></div>
 
-    <!-- Script principal da aplicação -->
-    <script type="text/babel" data-presets="react,typescript" src="./index.tsx"></script>
+    <!-- Script principal com presets explícitos para React e TypeScript -->
+    <script type="text/babel" data-type="module" data-presets="react,typescript" src="./index.tsx"></script>
 
     <!-- Registro do Service Worker -->
     <script>
